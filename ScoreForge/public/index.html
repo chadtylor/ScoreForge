@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    ScoreForge — Tournament Management
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body data-page="auth">
+
+  <main class="auth-page">
+
+    <section class="auth-brand-panel">
+
+      <div class="auth-brand-top">
+
+        <div class="brand">
+
+          <div class="brand-mark">
+            SF
+          </div>
+
+          <div>
+            <strong>
+              ScoreForge
+            </strong>
+
+            <span>
+              Tournament operations
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="auth-hero">
+
+        <p class="eyebrow orange">
+          TOURNAMENT OPERATIONS PLATFORM
+        </p>
+
+        <h1>
+          Score faster.
+          <span>
+            Manage smarter.
+          </span>
+        </h1>
+
+        <p>
+          Run teams, fixtures, results and league tables
+          from one focused scoring workspace.
+        </p>
+
+
+        <div class="auth-features">
+
+          <article>
+
+            <div class="feature-number">
+              01
+            </div>
+
+            <div>
+              <strong>
+                Live standings
+              </strong>
+
+              <span>
+                Tables recalculate automatically after every result.
+              </span>
+            </div>
+
+          </article>
+
+
+          <article>
+
+            <div class="feature-number">
+              02
+            </div>
+
+            <div>
+              <strong>
+                Structured scoring
+              </strong>
+
+              <span>
+                Validation prevents incomplete and invalid score entries.
+              </span>
+            </div>
+
+          </article>
+
+
+          <article>
+
+            <div class="feature-number">
+              03
+            </div>
+
+            <div>
+              <strong>
+                Persistent database
+              </strong>
+
+              <span>
+                Tournament data remains available between sessions.
+              </span>
+            </div>
+
+          </article>
+
+        </div>
+
+      </div>
+
+
+      <div class="auth-footer">
+        Database-driven tournament management.
+      </div>
+
+    </section>
+
+
+    <section class="auth-form-panel">
+
+      <div class="auth-form-container">
+
+        <div class="auth-form-heading">
+
+          <p class="eyebrow">
+            SCORE MANAGEMENT
+          </p>
+
+          <h2>
+            Welcome to ScoreForge
+          </h2>
+
+          <p>
+            Sign in to manage your tournaments and scoring desk.
+          </p>
+
+        </div>
+
+
+        <div class="auth-tabs">
+
+          <button
+            id="loginTab"
+            class="auth-tab active"
+            type="button"
+          >
+            Sign in
+          </button>
+
+          <button
+            id="registerTab"
+            class="auth-tab"
+            type="button"
+          >
+            Create account
+          </button>
+
+        </div>
+
+
+        <form
+          id="loginForm"
+          class="auth-form"
+        >
+
+          <label>
+            Email address
+
+            <input
+              id="loginEmail"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </label>
+
+
+          <label>
+            Password
+
+            <input
+              id="loginPassword"
+              type="password"
+              placeholder="Enter your password"
+              autocomplete="current-password"
+              required
+            >
+          </label>
+
+
+          <button
+            class="auth-submit"
+            type="submit"
+          >
+            Sign in to dashboard
+          </button>
+
+        </form>
+
+
+        <form
+          id="registerForm"
+          class="auth-form hidden"
+        >
+
+          <label>
+            Full name
+
+            <input
+              id="registerName"
+              type="text"
+              placeholder="Chadrack"
+              autocomplete="name"
+              required
+            >
+          </label>
+
+
+          <label>
+            Email address
+
+            <input
+              id="registerEmail"
+              type="email"
+              placeholder="you@example.com"
+              autocomplete="email"
+              required
+            >
+          </label>
+
+
+          <label>
+            Password
+
+            <input
+              id="registerPassword"
+              type="password"
+              placeholder="Minimum 8 characters"
+              autocomplete="new-password"
+              minlength="8"
+              required
+            >
+          </label>
+
+
+          <button
+            class="auth-submit"
+            type="submit"
+          >
+            Create ScoreForge account
+          </button>
+
+        </form>
+
+
+        <div
+          id="authMessage"
+          class="form-message hidden"
+        ></div>
+
+
+        <p class="security-note">
+          Passwords are hashed before being stored in the database.
+          This project is intended as a portfolio demonstration.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>

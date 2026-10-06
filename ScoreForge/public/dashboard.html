@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    ScoreForge Dashboard
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
+</head>
+
+
+<body data-page="dashboard">
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+
+      <div class="sidebar-brand brand">
+
+        <div class="brand-mark">
+          SF
+        </div>
+
+        <div>
+          <strong>
+            ScoreForge
+          </strong>
+
+          <span>
+            Tournament operations
+          </span>
+        </div>
+
+      </div>
+
+
+      <nav class="sidebar-nav">
+
+        <button
+          class="sidebar-link active"
+          type="button"
+        >
+          <span>01</span>
+          Overview
+        </button>
+
+        <button
+          class="sidebar-link"
+          type="button"
+          onclick="document.getElementById('scoreDesk').scrollIntoView({behavior:'smooth'})"
+        >
+          <span>02</span>
+          Score desk
+        </button>
+
+        <button
+          class="sidebar-link"
+          type="button"
+          onclick="document.getElementById('leaderboardPanel').scrollIntoView({behavior:'smooth'})"
+        >
+          <span>03</span>
+          Standings
+        </button>
+
+        <button
+          class="sidebar-link"
+          type="button"
+          onclick="document.getElementById('teamPanel').scrollIntoView({behavior:'smooth'})"
+        >
+          <span>04</span>
+          Teams
+        </button>
+
+      </nav>
+
+
+      <div class="sidebar-bottom">
+
+        <div class="sidebar-user">
+
+          <div
+            id="userAvatar"
+            class="user-avatar"
+          >
+            C
+          </div>
+
+          <div>
+            <strong id="sidebarUserName">
+              User
+            </strong>
+
+            <span id="sidebarUserEmail">
+              Loading...
+            </span>
+          </div>
+
+        </div>
+
+
+        <button
+          id="logoutButton"
+          class="logout-button"
+          type="button"
+        >
+          Sign out
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <main class="dashboard-main">
+
+      <header class="dashboard-header">
+
+        <div>
+
+          <p class="eyebrow">
+            TOURNAMENT CONTROL
+          </p>
+
+          <h1>
+            Competition dashboard
+          </h1>
+
+        </div>
+
+
+        <div class="dashboard-header-actions">
+
+          <select id="tournamentSelect"></select>
+
+          <button
+            id="newTournamentButton"
+            class="orange-button"
+            type="button"
+          >
+            + New tournament
+          </button>
+
+        </div>
+
+      </header>
+
+
+      <section class="tournament-banner">
+
+        <div>
+
+          <div class="status-pill">
+            <span></span>
+            ACTIVE TOURNAMENT
+          </div>
+
+          <h2 id="tournamentName">
+            Loading...
+          </h2>
+
+          <p id="tournamentSport">
+            —
+          </p>
+
+        </div>
+
+
+        <div class="tournament-banner-actions">
+
+          <button
+            id="generateFixturesButton"
+            type="button"
+          >
+            Generate fixtures
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <section class="stats-grid">
+
+        <article class="stat-card">
+
+          <span>
+            TEAMS
+          </span>
+
+          <strong id="teamCount">
+            0
+          </strong>
+
+          <small>
+            Registered competitors
+          </small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <span>
+            FIXTURES
+          </span>
+
+          <strong id="fixtureCount">
+            0
+          </strong>
+
+          <small>
+            Total scheduled games
+          </small>
+
+        </article>
+
+
+        <article class="stat-card">
+
+          <span>
+            COMPLETED
+          </span>
+
+          <strong id="completedCount">
+            0
+          </strong>
+
+          <small>
+            Results submitted
+          </small>
+
+        </article>
+
+
+        <article class="stat-card highlight-stat">
+
+          <span>
+            PROGRESS
+          </span>
+
+          <strong id="progressValue">
+            0%
+          </strong>
+
+          <div class="mini-progress">
+
+            <div
+              id="miniProgressBar"
+              class="mini-progress-fill"
+            ></div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <section class="dashboard-grid">
+
+        <!-- SCORE DESK -->
+
+        <article
+          id="scoreDesk"
+          class="dashboard-panel score-panel"
+        >
+
+          <div class="panel-header">
+
+            <div>
+              <p class="panel-eyebrow">
+                FAST DATA ENTRY
+              </p>
+
+              <h2>
+                Score desk
+              </h2>
+
+              <p>
+                Enter or correct results without leaving the page.
+              </p>
+            </div>
+
+
+            <span
+              id="pendingMatchesBadge"
+              class="count-badge"
+            >
+              0 pending
+            </span>
+
+          </div>
+
+
+          <div
+            id="matchList"
+            class="match-list"
+          ></div>
+
+        </article>
+
+
+        <!-- LEADERBOARD -->
+
+        <article
+          id="leaderboardPanel"
+          class="dashboard-panel leaderboard-panel"
+        >
+
+          <div class="panel-header">
+
+            <div>
+              <p class="panel-eyebrow">
+                AUTOMATED
+              </p>
+
+              <h2>
+                Leaderboard
+              </h2>
+
+              <p>
+                Ranked by points, goal difference and goals scored.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="table-wrap">
+
+            <table class="leaderboard-table">
+
+              <thead>
+
+                <tr>
+                  <th>#</th>
+                  <th>Team</th>
+                  <th>P</th>
+                  <th>W</th>
+                  <th>D</th>
+                  <th>L</th>
+                  <th>GD</th>
+                  <th>Pts</th>
+                </tr>
+
+              </thead>
+
+
+              <tbody id="leaderboardBody">
+              </tbody>
+
+            </table>
+
+          </div>
+
+        </article>
+
+
+        <!-- TEAMS -->
+
+        <article
+          id="teamPanel"
+          class="dashboard-panel team-panel"
+        >
+
+          <div class="panel-header">
+
+            <div>
+              <p class="panel-eyebrow">
+                PARTICIPANTS
+              </p>
+
+              <h2>
+                Teams
+              </h2>
+
+            </div>
+
+          </div>
+
+
+          <form
+            id="addTeamForm"
+            class="add-team-form"
+          >
+
+            <input
+              id="teamNameInput"
+              type="text"
+              placeholder="Team name"
+              required
+            >
+
+            <input
+              id="teamShortInput"
+              type="text"
+              maxlength="4"
+              placeholder="Code"
+            >
+
+            <button
+              type="submit"
+            >
+              Add team
+            </button>
+
+          </form>
+
+
+          <div
+            id="teamList"
+            class="team-list"
+          ></div>
+
+        </article>
+
+
+        <!-- ACTIVITY -->
+
+        <article class="dashboard-panel activity-panel">
+
+          <div class="panel-header">
+
+            <div>
+              <p class="panel-eyebrow">
+                AUDIT TRAIL
+              </p>
+
+              <h2>
+                Recent activity
+              </h2>
+
+            </div>
+
+          </div>
+
+
+          <div
+            id="activityList"
+            class="activity-list"
+          ></div>
+
+        </article>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- NEW TOURNAMENT MODAL -->
+
+  <section
+    id="tournamentModal"
+    class="modal hidden"
+  >
+
+    <div class="modal-card">
+
+      <button
+        class="modal-close"
+        data-close="tournamentModal"
+        type="button"
+      >
+        ×
+      </button>
+
+
+      <p class="modal-eyebrow">
+        NEW COMPETITION
+      </p>
+
+      <h2>
+        Create tournament
+      </h2>
+
+      <p class="modal-description">
+        Start a new scoring workspace and add teams when you're ready.
+      </p>
+
+
+      <form
+        id="tournamentForm"
+        class="modal-form"
+      >
+
+        <label>
+          Tournament name
+
+          <input
+            id="newTournamentName"
+            type="text"
+            placeholder="Summer Cup 2027"
+            required
+          >
+        </label>
+
+
+        <label>
+          Sport
+
+          <select
+            id="newTournamentSport"
+          >
+            <option>
+              Football
+            </option>
+
+            <option>
+              Basketball
+            </option>
+
+            <option>
+              Hockey
+            </option>
+
+            <option>
+              Futsal
+            </option>
+
+            <option>
+              Other
+            </option>
+          </select>
+        </label>
+
+
+        <button
+          class="modal-submit"
+          type="submit"
+        >
+          Create tournament
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <script src="script.js"></script>
+
+</body>
+</html>
